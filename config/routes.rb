@@ -1,13 +1,22 @@
-ActionController::Routing::Routes.draw do |map|  
-  map.resources :games, :has_many => [:decks, :acts]
+Project::Application.routes.draw do
+  resources :users
+  namespace :admin do
+    resources :users
+  end
+  match '/login' => 'sessions#new', :as => :login
+  match ':controller(/:action(/:id(.:format)))'
+end
 
-  map.resources :users
+#ActionController::Routing::Routes.draw do |map|  
+#  map.resources :games, :has_many => [:decks, :acts]
+
+#  map.resources :users
   
-  map.resources :templates, :has_many => [:cards]
+#  map.resources :templates, :has_many => [:cards]
   
-  map.login 'login', :controller => :users, :action => :login
+#  map.login 'login', :controller => :users, :action => :login
   
-  map.root :login
+#  map.root :login
   
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -48,6 +57,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-end
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
+#end
