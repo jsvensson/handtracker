@@ -1,1 +1,6 @@
-/log/development.log
+.DS_Store
+.bundle
+db/*.sqlite3
+config/database.yml
+log/*.log
+tmp/**/*
